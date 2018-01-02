@@ -1,0 +1,102 @@
+<div style="position: relative;">
+    <div style="display: inline-block;border-style :solid; border-width: thin; border-radius:3px;width: 200px; overflow-x: hidden;padding: 2px 5px 0px 5px; box-shadow: 0 3px 6px -2px #232323;
+    -moz-box-shadow: 0 3px 6px -2px #232323;-webkit-box-shadow: 0 3px 6px -2px #232323;"
+         ng-style="{'background-color':vm.backgroundColor}"
+         ng-click="vm.toggleDropdownBody()">
+        <div>
+            <div style="overflow-x: hidden;  width: 150px; text-overflow: ellipsis; white-space: nowrap;display: inline-block">
+                {{vm.displayName}}
+            </div>
+            <span
+                    style="font-size: x-small; float: right; font-size: x-small;display: inline;  line-height: 2.5; ">{{vm.selectedData.length}}/{{vm.inputData.length}} ▼ </span>
+        </div>
+    </div>
+
+    <div style="display: block; width: 280px; border-style: solid;border-width: 1px;border-color:#8d8a8a;     position: absolute; z-index: 500;
+    box-shadow: 2px 3px 6px -2px #232323;-moz-box-shadow: 2px 3px 6px -2px #232323;-webkit-box-shadow: 2px 3px 6px -2px #232323;"
+         ng-class="{ 'dropLeft':vm.dropLeft ,'dropUp': vm.dropUp };"
+         ng-show="vm.showDropdownbody" ng-mouseleave="vm.toggleDropdownBody()">
+        <div ng-if="!vm.dropUp"
+             style="padding: 5px;    background-color: whitesmoke; z-index: 200;
+             box-shadow: -1px 5px 6px -2px #232323;-moz-box-shadow:-1px 5px 6px -2px #232323;
+    -webkit-box-shadow: -1px 5px 6px -2px #232323;">
+            <input type="text" ng-model="vm.txtFilter" ng-change="vm.filterList()" style="height: 25px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;"/>
+            <span style="font-size: x-large;text-align: center;vertical-align: sub;color: #34ae12; cursor: pointer"
+                  ng-click="vm.toggleAll(true)">☑</span>
+            <span style="font-size: x-large;text-align: center;vertical-align: sub;color: #ae1224; cursor: pointer"
+                  ng-click="vm.toggleAll(false)">☒</span>
+        </div>
+
+        <div style="max-height: 500px;overflow-y: auto; z-index: 199;">
+            <div style="padding: 0px 5px;
+        border-top-color: white;
+        border-top-width: 1px;
+        border-top-style:solid ; padding-left: 4px"
+                 ng-class="item.selected && item.selected ==true ?'check':'uncheck'"
+                 ng-repeat="item in ::vm.inputData track by $index" ng-click="vm.toggleSelection($index)"
+                 title="{{::item[::vm.tooltipField]}}"
+                 ng-show="item.shown"
+                 onmouseover="this.style.backgroundColor='#d5cf8b';"
+                 onmouseout="this.style.removeProperty('background-color');">
+                <div style="overflow-x: hidden;  z-index: 198; width: 235px; text-overflow: ellipsis; white-space: nowrap;display: inline-block">
+                    {{::item[::vm.textField]}}
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="vm.dropUp"
+             style="padding: 5px;    background-color: whitesmoke;
+             box-shadow: 1px -3px 6px -2px #232323;
+-moz-box-shadow:1px -3px 6px -2px #232323;
+
+    -webkit-box-shadow: 1px -3px 6px -2px #232323;
+">
+            <input type="text" ng-model="vm.txtFilter" ng-change="vm.filterList()" style="height: 25px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;"/>
+            <span style="font-size: x-large;text-align: center;vertical-align: sub;color: #34ae12; cursor: pointer"
+                  ng-click="vm.toggleAll(true)">☑</span>
+            <span style="font-size: x-large;text-align: center;vertical-align: sub;color: #ae1224; cursor: pointer"
+                  ng-click="vm.toggleAll(false)">☒</span>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .dropLeft {
+        margin-left: -70px;
+    }
+
+    .dropUp {
+        bottom: 100%;
+    }
+
+    .check {
+        background-color: lightblue;
+    }
+
+    .check::after {
+        font-weight: 700;
+        color: green;
+        content: "✔";
+        float: right;
+        color: #333;
+    }
+
+    .uncheck {
+
+    }
+</style>

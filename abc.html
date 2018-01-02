@@ -1,0 +1,25 @@
+<html ng-app="demoApp">
+<head>
+    <title>MultiSelect Component</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="Scripts/Component/app.js"></script>
+    <script src="Scripts/Component/MultiSelect/multiSelect.component.js"></script>
+    <script src="Scripts/demoApp.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+<div>{{test}}</div>
+<div style="padding-left: 50px">
+    <multi-select display-name="'Select Countryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy'" input-data="main.data" background-color="'orange'" text-field="'Name'" align-left = "false" value-field = "'Code'"
+                  tooltip-field = "'Name'" selected-data = "selList"></multi-select>
+
+    {{selList}}
+</div>
+</body>
+</html>
+<style>
+    body{
+        font-family: "Segoe UI";
+        font-size: medium;
+
+    }
+</style>
